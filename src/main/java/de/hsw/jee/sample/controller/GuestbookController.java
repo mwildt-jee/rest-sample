@@ -17,7 +17,7 @@ import de.hsw.jee.sample.model.GuestbookEntry;
 import de.hsw.jee.sample.service.GuestbookService;
 
 @WebServlet("/")
-public class GuestboolController extends HttpServlet{
+public class GuestbookController extends HttpServlet{
 
 	@Inject private GuestbookService guestbookService;
 	
