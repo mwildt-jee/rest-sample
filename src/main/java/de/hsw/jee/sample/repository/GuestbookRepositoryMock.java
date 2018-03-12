@@ -12,7 +12,7 @@ import de.hsw.jee.sample.model.GuestbookEntry;
 
 @ApplicationScoped
 @Mock
-public class GuestbookRepositoryḾock implements GuestbookRepository {
+public class GuestbookRepositoryMock implements GuestbookRepository {
 
 	private final List<GuestbookEntry> data = new LinkedList<>();
 	private long sequence = 0;
