@@ -18,6 +18,11 @@ import de.hsw.jee.sample.config.ServiceFactory;
 import de.hsw.jee.sample.model.Product;
 import de.hsw.jee.sample.service.ProductService;
 
+/**
+ * Controller Klasse für die JSON-Endpunkte des Produkt Service
+ * @author mwildt
+ *
+ */
 @ApplicationScoped
 @Path("/products")
 public class ProductsEndpoint {

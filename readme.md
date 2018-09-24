@@ -14,6 +14,6 @@ Neues Produkt hinzufügen
 
 Produkt bearbeiten
 
-## `DELETE: //apiproducts/{id}`
+## `DELETE: /api/products/{id}`
 
 Produkt Löschen
