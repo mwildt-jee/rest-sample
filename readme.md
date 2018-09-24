@@ -1,19 +1,19 @@
 # Rest Sample Projekt
 
-Folgende Endunkte sind vorhanden (siehe RestConfiguration.java und GuestbookEntryEndpoint.java)
+Folgende Endunkte sind vorhanden (siehe RestConfiguration.java und ProductsEndpoint.java)
 
-## `GET: /guestbook/entries`
+## `GET: /api/products`
 
-Lesen aller Einträge
+Lesen aller Produkte
 
-## `POST: /guestbook/entries`
+## `POST: /api/products`
 
-Neuen Eintrag hinzufügen
+Neues Produkt hinzufügen
 
-## `PUT: /guestbook/entries/{id}`
+## `PUT: /api/products/{id}`
 
-Eintrag bearbeiten
+Produkt bearbeiten
 
-## `DELETE: /guestbook/entries/{id}`
+## `DELETE: //apiproducts/{id}`
 
-Eintrag Löschen
+Produkt Löschen

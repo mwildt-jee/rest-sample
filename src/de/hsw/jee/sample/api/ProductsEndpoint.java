@@ -3,7 +3,6 @@ package de.hsw.jee.sample.api;
 import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,29 +14,30 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import de.hsw.jee.sample.model.GuestbookEntry;
-import de.hsw.jee.sample.service.GuestbookService;
+import de.hsw.jee.sample.config.ServiceFactory;
+import de.hsw.jee.sample.model.Product;
+import de.hsw.jee.sample.service.ProductService;
 
 @ApplicationScoped
-@Path("/guestbook/entries")
-public class GuestbookEntryEndpoint {
+@Path("/products")
+public class ProductsEndpoint {
 
-	@Inject private GuestbookService guestbookService;
+	private final ProductService productService = ServiceFactory.getProductService();
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(){
 		return Response
-				.ok(guestbookService.findAll())
+				.ok(productService.findAll())
 				.build();
 	}
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response post(final GuestbookEntry entry){
+	public Response post(final Product product){
 		return Response
-				.ok(guestbookService.save(entry))
+				.ok(productService.save(product))
 				.build(); 
 	}
 	
@@ -45,31 +45,29 @@ public class GuestbookEntryEndpoint {
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(@PathParam("id") Long id, GuestbookEntry entry){
+	public Response update(@PathParam("id") Long id, Product product){
 		
-		final Optional<GuestbookEntry> loaded = guestbookService.findById(id);
+		final Optional<Product> loaded = productService.findById(id);
 		if (!loaded.isPresent()) {
 			return Response.status(404).build();
 		} else {
-			GuestbookEntry e = loaded.get();
-			e.setMessage(entry.getMessage());
-			guestbookService.save(e);
-			return Response.ok(e).build();
+			loaded.get().update(product);
+			productService.save(loaded.get());
+			return Response.ok(loaded.get()).build();
 		}
-		
 	}
 	
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response delete(@PathParam("id") Long id){
-		final Optional<GuestbookEntry> loaded = guestbookService.findById(id);
+		final Optional<Product> loaded = productService.findById(id);
 		if (!loaded.isPresent()) {
 			return Response.status(404).build();
 		} else {
-			guestbookService.delete(loaded.get());
+			productService.delete(loaded.get());
 			return Response.ok().build();
 		}
 	}
-	
+
 }
